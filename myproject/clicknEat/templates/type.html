@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <title>wishlist</title>
+    <style>
+        nav {
+            background-color: #e54956;
+            color: white;
+        }
+
+        li {
+            color: white;
+        }
+
+        .sub_btn {
+            background-color: white;
+            border: 1px solid #e54956;
+            color: #e54956;
+        }
+
+        .sub_btn:hover {
+            background-color: #e54956;
+            color: white;
+        }
+
+        .food_img {
+            height: 30vh;
+            width: 18.7vw;
+        }
+
+        li:hover {
+            background-color: #F7C5CC;
+        }
+
+        .wishlist_heading {
+            text-align: center;
+            font-style: italic;
+            color: #e54956;
+        }
+
+        .footer {
+            background-color: #e54956;
+            padding: 20px;
+            color: white;
+        }
+
+        .f_head {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    {% load static %}
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <div style="color:black; font-size:20px; margin-right:20px">ClicknEat</div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/ClicknEat/">Home</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">About Us</a>
+              </li>
+              {% if request.user.is_anonymous %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/ClicknEat/signin">Sign-in</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/ClicknEat/signup">Sign-up</a>
+              </li>
+              {% endif %}
+              {% if request.user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-person-circle user"></i>
+                </a>
+    
+                <ul class="dropdown-menu" style="background-color: #e54956;" aria-labelledby="navbarDropdownMenuLink">
+                  {{request.user.username}}
+                  <li><a class="dropdown-item" href="/ClicknEat/show_cart">Cart</a></li>
+                  <li><a class="dropdown-item" href="/ClicknEat/show_wishlist">My wishlist</a></li>
+                  <li><a class="dropdown-item" href="/ClicknEat/myorders">My Orders</a></li>
+                  <li><a class="dropdown-item" href="/ClicknEat/signout">Sign-out</a></li>
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      {% for items in typesearch_list%}
+      {% if forloop.counter0|divisibleby:4 %}<div class="row">{% endif %}
+          <div class="card col-md-3 shadow mt-5" style="width: 18rem; margin-right: 60px; margin-left:30px;background-color: #F7C5CC;">
+              <img src="{% get_static_prefix %}img/{{ items.id}}.png" class="card-img-top food_img" alt="..."
+                  style="height: 30vh; width: 17.8vw;">
+              <div class="card-body">
+                  <h5 class="card-title text-center">{{items.name}}</h5>
+                  <p class="card-text text-center">Rs {{items.price}}</p>
+                  <div class="d-flex">
+                      <a href="/ClicknEat/cart/{{items.id}}" class="btn btn-primary sub_btn" style="margin-right:10px;">Add to Cart</a>
+                      <a href="/ClicknEat/wishlist/{{items.id}}" class="btn btn-primary sub_btn" style="margin-right:10px">Add to WishList</a>
+                  </div>
+              </div>
+          </div>
+          {% if forloop.counter|divisibleby:4 or forloop.last %}
+      </div><br>{% endif %}
+      {%endfor%}
+
+    <div class="row footer">
+        <div class="col-md-2">
+            <div class="f_head">Quick Links</div>
+            Home<br>
+            About Us<br>
+            My cart<br>
+            My Wishlist<br>
+            Career<br>
+            Collbarations<br>
+        </div>
+        <div class="col-md-2">
+            <div class="f_head">Cuisine Ctaegories</div>
+            South Indian<br>
+            Chinese<br>
+            Italian<br>
+            Meaxican<br>
+            Other Desi<br>
+            Hot Sellers<br>
+        </div>
+        <div class="col-md-2">
+            <div class="f_head">Learn More</div>
+            Privacy<br>
+            Security<br>
+            Terms<br>
+            SiteMap<br>
+        </div>
+        <div class="col-md-2">
+            <div class="f_head">Help</div>
+            Payments<br>
+            delivery<br>
+            Cancellations and Returns<br>
+            FAQ<br>
+        </div>
+        <div class="col-md-4">
+            <div class="f_head">Contact Us</div>
+            Mail your Query<br>
+            <form style="margin-top: 20px;">
+                <input type="mail">
+                <input type="submit">
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>

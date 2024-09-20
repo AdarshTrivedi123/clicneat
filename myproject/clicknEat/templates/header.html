@@ -1,0 +1,59 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css” />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <link rel="preload" as="style" href="{% static 'css/style.css' %}" onload="this.rel = 'stylesheet'" />
+  <title>ClicknEat</title>
+</head>
+
+<body>
+  <div class="card container-fluid mb-3">
+    <div class="row no-gutters food_top">
+      <div class="col-md-9 mt-5 ">
+        <div class="card-body">
+          <h1 class="card-title" style="font-style: italic; color:#e54956;">Get delicious food, in just one click</h2>
+            <form method="POST" action="/ClicknEat/type" class="d-flex col-md-4">
+              {% csrf_token %} 
+              <input class="form-control me-2" type="search" placeholder="Search your food here!!" aria-label="Search" name="type_name">
+              <input  class="btn btn-outline-danger fbtn" type="submit" value="Search">
+            </form>
+            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+        </div>
+      </div>
+      <div class="col-md-3 pizza">
+        <img class="img-fluid" src="{% static 'img/food4.png' %}" class="card-img" alt="...">
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-around">
+    <div class="col-2">
+      <a href="/ClicknEat/" class="btn btn-outline-danger">Hot Sellers</a>
+    </div>
+    <div class="col-2">
+      <a href="/ClicknEat/category/southIndian" class="btn btn-outline-danger ">South Indian</a>
+    </div>
+    <div class="col-2">
+      <a href="/ClicknEat/category/chinese" class="btn btn-outline-danger">Chinese</a>
+    </div>
+    <div class="col-2">
+      <a href="/ClicknEat/category/Italian" class="btn btn-outline-danger">Italian</a>
+    </div>
+    <div class="col-2">
+      <a href="/ClicknEat/category/mexican" class="btn btn-outline-danger">Mexican</a>
+    </div>
+    <div class="col-2">
+      <a href="/ClicknEat/category/others" class="btn btn-outline-danger">Others</a>
+    </div>
+  </div>
+</body>
+
+</html>

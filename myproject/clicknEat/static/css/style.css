@@ -1,0 +1,82 @@
+
+.food_top {
+    background-color: #F7C5CC;
+    padding: 70px;
+  }
+
+  .div2 {
+    float: right;
+  }
+
+  nav {
+    background-color: #e54956;
+    /* color: white; */
+  }
+  li{
+    font-size: 20px;
+  }
+  .food_btn {
+    border: 1px solid #e54956;
+  }
+
+  .food_btn:hover {
+    background-color: #e54956;
+  }
+
+  .pizza {
+    box-shadow: 20px;
+  }
+
+  .type {
+    background-color: #e54956;
+    width: 10vw;
+    margin-right: 10px;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .food_img {
+    height: 30vh;
+    width: 18.7vw;
+  }
+
+  .del_img {
+    height: 40vh;
+    width: 40vh;
+  }
+
+  .india_head {
+    font-style: italic;
+    color: #e54956;
+  }
+
+  .india_text {
+    margin-top: 30px;
+    font-size: 20px;
+    height: 20vh;
+    width: 70vh;
+  }
+
+  .footer {
+    background-color: #e54956;
+    padding: 20px;
+    color: white;
+  }
+
+  .f_head {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  li:hover{
+    background-color: #F7C5CC;
+  }
+  .sub_btn {
+    background-color: white;
+    border: 1px solid #e54956;
+    color: #e54956;
+}
+.wishlist_heading {
+  text-align: center;
+  font-style: italic;
+  color: #e54956;
+}
